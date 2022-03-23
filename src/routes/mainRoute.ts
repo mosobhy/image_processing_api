@@ -1,11 +1,9 @@
 import express from 'express';
-import {Response, Request } from 'express'
-import resize from './api/resize'
+import { Response, Request } from 'express';
+import resize from './api/resize';
 
-const routes = express.Router()
+const routes = express.Router();
 
+routes.use('/images', resize);
 
-routes.use('/image', resize)
-
-
-export default routes
+export default routes;
