@@ -1,12 +1,14 @@
 import express from 'express';
+import { Request, Response } from 'express'
 import fs from 'fs'
 import path from 'path'
 import sharp from 'sharp';
+import resizeImage from '../../image_processing/resize';
 
 const resize = express.Router()
 
 // note: i am note specifying any uri here 
-resize.get('', (req, res) => {
+resize.get('', async (req: Request, res: Response): Promise<void> => {
 
     if (req.query.filename && req.query.width && req.query.height) {
         
@@ -19,16 +21,14 @@ resize.get('', (req, res) => {
         if (thumbedFiles.includes(`${filename}_${width}_${height}.jpg`)) {
             res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`)
         } else {
-            (async () => {
-                try {
-                    await sharp(`${pathToHere}/src/image_processing/images/${filename}.jpg`)
-                    .resize(Number((width)), Number(height))
-                    .toFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`)
-                    res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`)
-                } catch (error) {
-                    res.status(400).send('<h1>no such file</h1>')
-                }
-            })()
+            
+            await resizeImage(filename, width, height)
+            .then(( status ) => {
+                res.status(status).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`)
+            })
+            .catch((err) => {
+                res.status(400).send('<h1>No Such File<h1>')
+            })
         }
     }
 })

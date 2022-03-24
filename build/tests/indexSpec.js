@@ -20,11 +20,11 @@ beforeAll(() => {
 });
 describe('testing the resize endpoint', () => {
     it('returns 400 when wrong filename is provided', () => __awaiter(void 0, void 0, void 0, function* () {
-        const response = yield request.get('/api/images?filename=sdfsdfe&width=200&height=200');
+        const response = yield request.get('/api/image?filename=sdfsdfe&width=200&height=200');
         expect(response.status).toBe(400);
     }));
     it('returns 200 when a valid filname is provided', () => __awaiter(void 0, void 0, void 0, function* () {
-        const reponse = yield request.get('/api/images?filename=fjord&width=2040&height=2003');
+        const reponse = yield request.get('/api/image?filename=fjord&width=2040&height=2003');
         expect(reponse.status).toBe(200);
     }));
 });

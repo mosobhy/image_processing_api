@@ -10,14 +10,14 @@ beforeAll(() => {
 describe('testing the resize endpoint', () => {
   it('returns 400 when wrong filename is provided', async () => {
     const response = await request.get(
-      '/api/images?filename=sdfsdfe&width=200&height=200'
+      '/api/image?filename=sdfsdfe&width=200&height=200'
     );
     expect(response.status).toBe(400);
   });
 
   it('returns 200 when a valid filname is provided', async () => {
     const reponse = await request.get(
-      '/api/images?filename=fjord&width=2040&height=2003'
+      '/api/image?filename=fjord&width=2040&height=2003'
     );
     expect(reponse.status).toBe(200);
   });

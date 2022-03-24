@@ -15,10 +15,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
-const sharp_1 = __importDefault(require("sharp"));
+const resize_1 = __importDefault(require("../../image_processing/resize"));
 const resize = express_1.default.Router();
 // note: i am note specifying any uri here 
-resize.get('', (req, res) => {
+resize.get('', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.query.filename && req.query.width && req.query.height) {
         const pathToHere = path_1.default.resolve();
         const width = req.query.width;
@@ -29,18 +29,14 @@ resize.get('', (req, res) => {
             res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
         }
         else {
-            (() => __awaiter(void 0, void 0, void 0, function* () {
-                try {
-                    yield (0, sharp_1.default)(`${pathToHere}/src/image_processing/images/${filename}.jpg`)
-                        .resize(Number((width)), Number(height))
-                        .toFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
-                    res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
-                }
-                catch (error) {
-                    res.status(400).send('<h1>no such file</h1>');
-                }
-            }))();
+            yield (0, resize_1.default)(filename, width, height)
+                .then((status) => {
+                res.status(status).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
+            })
+                .catch((err) => {
+                res.status(400).send('<h1>No Such File<h1>');
+            });
         }
     }
-});
+}));
 exports.default = resize;
