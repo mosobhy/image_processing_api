@@ -6,5 +6,5 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const resize_1 = __importDefault(require("./api/resize"));
 const routes = express_1.default.Router();
-routes.use('/images', resize_1.default);
+routes.use('/image', resize_1.default);
 exports.default = routes;

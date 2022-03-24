@@ -15,16 +15,16 @@ resize.get('', (req, res) => {
         const height: number = (req.query.height as unknown) as number
         const filename: string = (req.query.filename as unknown) as string
 
-        let thumbedFiles = fs.readdirSync(pathToHere + '/src' + '/thumbed')
+        let thumbedFiles = fs.readdirSync(pathToHere + '/src/image_processing/thumbed')
         if (thumbedFiles.includes(`${filename}_${width}_${height}.jpg`)) {
-            res.status(200).sendFile(`${pathToHere}/src/thumbed/${filename}_${width}_${height}.jpg`)
+            res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`)
         } else {
             (async () => {
                 try {
-                    await sharp(`${pathToHere}/src/images/${filename}.jpg`)
+                    await sharp(`${pathToHere}/src/image_processing/images/${filename}.jpg`)
                     .resize(Number((width)), Number(height))
-                    .toFile(`${pathToHere}/src/thumbed/${filename}_${width}_${height}.jpg`)
-                    res.status(200).sendFile(`${pathToHere}/src/thumbed/${filename}_${width}_${height}.jpg`)
+                    .toFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`)
+                    res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`)
                 } catch (error) {
                     res.status(400).send('<h1>no such file</h1>')
                 }

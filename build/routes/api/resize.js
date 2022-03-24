@@ -24,19 +24,17 @@ resize.get('', (req, res) => {
         const width = req.query.width;
         const height = req.query.height;
         const filename = req.query.filename;
-        let thumbedFiles = fs_1.default.readdirSync(pathToHere + '/src' + '/thumbed');
+        let thumbedFiles = fs_1.default.readdirSync(pathToHere + '/src/image_processing/thumbed');
         if (thumbedFiles.includes(`${filename}_${width}_${height}.jpg`)) {
-            res.status(200).sendFile(`${pathToHere}/src/thumbed/${filename}_${width}_${height}.jpg`);
-            console.log('reading from disk');
+            res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
         }
         else {
             (() => __awaiter(void 0, void 0, void 0, function* () {
                 try {
-                    yield (0, sharp_1.default)(`${pathToHere}/src/images/${filename}.jpg`)
+                    yield (0, sharp_1.default)(`${pathToHere}/src/image_processing/images/${filename}.jpg`)
                         .resize(Number((width)), Number(height))
-                        .toFile(`${pathToHere}/src/thumbed/${filename}_${width}_${height}.jpg`);
-                    console.log('resizing image');
-                    res.status(200).sendFile(`${pathToHere}/src/thumbed/${filename}_${width}_${height}.jpg`);
+                        .toFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
+                    res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
                 }
                 catch (error) {
                     res.status(400).send('<h1>no such file</h1>');
