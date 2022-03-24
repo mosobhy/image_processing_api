@@ -9,7 +9,8 @@
     "test": "npm run build && npm run jasmine",
     "start": "nodemon ./src/index.ts",
     "startTS": "npx tsc --init",
-    "prettier": "prettier --write src/**/*.ts"
+    "prettier": "prettier --write src/**/*.ts",
+    "lint": "eslint 'src/**/*.ts' --ignore-pattern node_modules/"
   },
   "keywords": [],
   "author": "",

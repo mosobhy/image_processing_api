@@ -2,7 +2,6 @@ import express from 'express';
 import { Request, Response } from 'express'
 import fs from 'fs'
 import path from 'path'
-import sharp from 'sharp';
 import resizeImage from '../../image_processing/resize';
 
 const resize = express.Router()
