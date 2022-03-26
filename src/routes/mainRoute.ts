@@ -1,5 +1,4 @@
-import express from 'express';
-import { Response, Request } from 'express';
+import express, { Response, Request } from 'express';
 import resize from './api/resize';
 
 const routes = express.Router();

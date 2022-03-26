@@ -17,14 +17,14 @@ const fs_1 = __importDefault(require("fs"));
 const path_1 = __importDefault(require("path"));
 const resize_1 = __importDefault(require("../../image_processing/resize"));
 const resize = express_1.default.Router();
-// note: i am note specifying any uri here 
+// note: i am note specifying any uri here
 resize.get('', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     if (req.query.filename && req.query.width && req.query.height) {
         const pathToHere = path_1.default.resolve();
         const width = req.query.width;
         const height = req.query.height;
         const filename = req.query.filename;
-        let thumbedFiles = fs_1.default.readdirSync(pathToHere + '/src/image_processing/thumbed');
+        const thumbedFiles = fs_1.default.readdirSync(`${pathToHere}/src/image_processing/thumbed`);
         if (thumbedFiles.includes(`${filename}_${width}_${height}.jpg`)) {
             res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
         }
