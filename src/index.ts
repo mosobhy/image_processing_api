@@ -1,4 +1,4 @@
-import express, { Request, Response } from 'express';
+import express from 'express';
 import routes from './routes/mainRoute';
 
 const app = express();
@@ -8,7 +8,7 @@ app.use('/api', routes);
 
 // bind the app to port 3000
 app.listen(PORT, () => {
-  console.log(`app is listening to http://localhost:${PORT}`);
+  // console.log(`app is listening to http://localhost:${PORT}`);
 });
 
 export default app;

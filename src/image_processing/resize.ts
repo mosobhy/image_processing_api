@@ -5,7 +5,7 @@ const resizeImage = async (fileName: string, width: number, height: number): Pro
   const inPath = `${path.resolve()}/src/image_processing/images/`;
   const outPath = `${path.resolve()}/src/image_processing/thumbed/`;
   try {
-    const status = await sharp(`${inPath + fileName}.jpg`)
+    await sharp(`${inPath + fileName}.jpg`)
       .resize(Number(width), Number(height))
       .toFile(`${outPath + fileName}_${width}_${height}.jpg`);
 

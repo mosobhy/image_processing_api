@@ -10,7 +10,8 @@
     "start": "nodemon ./src/index.ts",
     "startTS": "npx tsc --init",
     "prettier": "prettier --write src/**/*.ts",
-    "lint": "eslint 'src/**/*.ts' --fix --ignore-pattern node_modules/"
+    "lint": "eslint 'src/**/*.ts' --ignore-pattern node_modules/",
+    "lint:fix": "eslint 'src/**/*.ts' --fix --ignore-pattern node_modules/"
   },
   "keywords": [],
   "author": "",

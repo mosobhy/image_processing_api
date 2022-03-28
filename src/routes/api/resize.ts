@@ -21,7 +21,7 @@ resize.get('', async (req: Request, res: Response): Promise<void> => {
         .then((status) => {
           res.status(status).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
         })
-        .catch((err) => {
+        .catch(() => {
           res.status(400).send('<h1>No Such File<h1>');
         });
     }

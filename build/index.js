@@ -10,6 +10,6 @@ const PORT = process.env.PORT || 5000;
 app.use('/api', mainRoute_1.default);
 // bind the app to port 3000
 app.listen(PORT, () => {
-    console.log(`app is listening to http://localhost:${PORT}`);
+    // console.log(`app is listening to http://localhost:${PORT}`);
 });
 exports.default = app;

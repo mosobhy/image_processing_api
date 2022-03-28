@@ -33,7 +33,7 @@ resize.get('', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 .then((status) => {
                 res.status(status).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
             })
-                .catch((err) => {
+                .catch(() => {
                 res.status(400).send('<h1>No Such File<h1>');
             });
         }

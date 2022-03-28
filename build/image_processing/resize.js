@@ -18,7 +18,7 @@ const resizeImage = (fileName, width, height) => __awaiter(void 0, void 0, void 
     const inPath = `${path_1.default.resolve()}/src/image_processing/images/`;
     const outPath = `${path_1.default.resolve()}/src/image_processing/thumbed/`;
     try {
-        const status = yield (0, sharp_1.default)(`${inPath + fileName}.jpg`)
+        yield (0, sharp_1.default)(`${inPath + fileName}.jpg`)
             .resize(Number(width), Number(height))
             .toFile(`${outPath + fileName}_${width}_${height}.jpg`);
         return 200;
