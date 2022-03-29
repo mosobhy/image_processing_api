@@ -7,7 +7,7 @@ const resize = express.Router();
 
 // note: i am note specifying any uri here
 resize.get('', async (req: Request, res: Response): Promise<void> => {
-  if (req.query.filename && req.query.width && req.query.height) {
+  if ((req.query.filename != undefined) && (req.query.width != undefined) && (req.query.height != undefined)) {
     const pathToHere = path.resolve();
     const width: number = (req.query.width as unknown) as number;
     const height: number = (req.query.height as unknown) as number;

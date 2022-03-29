@@ -1,7 +1,11 @@
 import path from 'path';
 import sharp from 'sharp';
 
-const resizeImage = async (fileName: string, width: number, height: number): Promise<number> => {
+const resizeImage = async (
+  fileName: string,
+  width: number,
+  height: number
+): Promise<number> => {
   const inPath = `${path.resolve()}/src/image_processing/images/`;
   const outPath = `${path.resolve()}/src/image_processing/thumbed/`;
   try {
