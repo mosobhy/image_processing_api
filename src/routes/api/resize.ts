@@ -17,7 +17,7 @@ resize.get('', async (req: Request, res: Response): Promise<void> => {
     if (thumbedFiles.includes(`${filename}_${width}_${height}.jpg`)) {
       res.status(200).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
     } else {
-      await resizeImage(filename, width, height)
+      resizeImage(filename, width, height)
         .then((status) => {
           res.status(status).sendFile(`${pathToHere}/src/image_processing/thumbed/${filename}_${width}_${height}.jpg`);
         })
